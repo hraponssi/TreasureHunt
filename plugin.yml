@@ -1,0 +1,26 @@
+name: TreasureHunt
+version: 1.0.0
+description: Treasure hunt plugin
+author: Hraponssi
+main: hraponssi.treasurehunt.main.Main
+api-version: 1.16
+commands:
+  thunt:
+    description: Treasure hunt main command
+    usage: use /thunt
+  treasurehunt:
+    description: Treasure hunt main command
+    usage: use /treasurehunt
+permissions:
+    thunt.*:
+        description: Gives access to all treasure hunt permissions
+        default: false
+        children:
+            thunt.admin: true
+            thunt.user: true
+    thunt.admin:
+        description: Admin commands for treasure hunt
+        default: false
+    thunt.user:
+        description: User actions & commands for treasure hunt
+        default: true
