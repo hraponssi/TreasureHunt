@@ -14,13 +14,13 @@ commands:
 permissions:
     thunt.*:
         description: Gives access to all treasure hunt permissions
-        default: false
+        default: op
         children:
             thunt.admin: true
             thunt.user: true
     thunt.admin:
         description: Admin commands for treasure hunt
-        default: false
+        default: op
     thunt.user:
         description: User actions & commands for treasure hunt
         default: true

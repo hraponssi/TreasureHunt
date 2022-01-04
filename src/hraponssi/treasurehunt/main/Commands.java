@@ -51,7 +51,7 @@ public class Commands implements CommandExecutor {
 							plugin.locations.remove(plugin.getTreasureLoc(id));
 							p.sendMessage(ChatColor.GREEN + "Removed treasure location " + id);
 						}else p.sendMessage(ChatColor.RED + "Use 'remove <id number>'");
-					}
+					} else p.sendMessage(ChatColor.RED + "You dont have permission");
 				} else if(args[0].equalsIgnoreCase("drop")) { 
 					if(p.hasPermission("thunt.user")){
 						if(plugin.carrying.containsKey(p.getUniqueId().toString())) {
@@ -59,13 +59,12 @@ public class Commands implements CommandExecutor {
 							plugin.dropTreasure(p);
 							p.sendMessage(ChatColor.GREEN + "Dropped treasure " + id);
 						}else p.sendMessage(ChatColor.RED + "You aren't carrying treasure");
-					}
+					} else p.sendMessage(ChatColor.RED + "You dont have permission");
 				}else {
 					p.sendMessage(ChatColor.RED + "Invalid arguments");
 				}
 			} else {
 				menus.openMenu(p);
-				//p.sendMessage(ChatColor.YELLOW + "Running treasurehunt by Hraponssi");
 			}
 			return true;
 		}
