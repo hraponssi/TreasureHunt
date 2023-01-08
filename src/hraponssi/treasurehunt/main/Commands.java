@@ -32,13 +32,14 @@ public class Commands implements CommandExecutor {
 					if(p.hasPermission("thunt.admin")){
 						if(args.length>1) {
 							int id = utils.toInt(args[1]);
-							if(id == 0) {
-								plugin.seting.remove(p.getUniqueId().toString());
-								p.sendMessage(ChatColor.GREEN + "Remove from treasure seters");
-							}
 							plugin.seting.put(p.getUniqueId().toString(), id);
 							p.sendMessage(ChatColor.GREEN + "Now setting treasure location " + id);
-						}else p.sendMessage(ChatColor.RED + "Use 'set <id number>'");
+						}else if (plugin.seting.containsKey(p.getUniqueId().toString())) {
+							plugin.seting.remove(p.getUniqueId().toString());
+							p.sendMessage(ChatColor.GREEN + "Removed from treasure seters");
+						}else {
+							p.sendMessage(ChatColor.RED + "Use 'set <id number>'");
+						}
 					} else p.sendMessage(ChatColor.RED + "You dont have permission");
 				} else if(args[0].equalsIgnoreCase("remove")) { 
 					if(p.hasPermission("thunt.admin")){
@@ -51,6 +52,15 @@ public class Commands implements CommandExecutor {
 							plugin.locations.remove(plugin.getTreasureLoc(id));
 							p.sendMessage(ChatColor.GREEN + "Removed treasure location " + id);
 						}else p.sendMessage(ChatColor.RED + "Use 'remove <id number>'");
+					} else p.sendMessage(ChatColor.RED + "You dont have permission");
+				} else if(args[0].equalsIgnoreCase("resetfinds")) { 
+					if(p.hasPermission("thunt.admin")){
+						if(plugin.finds.containsKey(p.getUniqueId().toString())) {
+							plugin.finds.remove(p.getUniqueId().toString());
+							p.sendMessage(ChatColor.GREEN + "Your finds list has been removed!");
+						}else{
+							p.sendMessage(ChatColor.RED + "Couldn't find a finds list for you!");
+						}
 					} else p.sendMessage(ChatColor.RED + "You dont have permission");
 				} else if(args[0].equalsIgnoreCase("drop")) { 
 					if(p.hasPermission("thunt.user")){

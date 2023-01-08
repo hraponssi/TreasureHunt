@@ -35,11 +35,11 @@ public class Menus {
 			if(!plugin.finds.containsKey(uuid)) plugin.finds.put(uuid, new ArrayList<Integer>());
 			if(plugin.finds.get(uuid).contains(id)) {
 				item.setType(Material.GREEN_WOOL);
-				lore.add(ChatColor.GREEN + "Found: " + plugin.finds.get(uuid).contains(id));
+				lore.add(ChatColor.GREEN + "Found: Yes");
 			}
 			if(!plugin.finds.get(uuid).contains(id)) {
 				item.setType(Material.RED_WOOL);
-				lore.add(ChatColor.RED + "Found: " + plugin.finds.get(uuid).contains(id));
+				lore.add(ChatColor.RED + "Found: No");
 			}
 			ItemMeta meta = item.getItemMeta();
 			meta.setDisplayName(ChatColor.YELLOW + "Treasure " + id);

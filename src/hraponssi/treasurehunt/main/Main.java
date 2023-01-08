@@ -59,7 +59,7 @@ public class Main extends JavaPlugin {
 		Location loc = getTreasureLoc(id);
 		if(loc != null) {
 			locations.remove(loc);
-		} else getLogger().warning("Tried to remove treasure that doesnt exist, id " + id + " location " + loc.toString());
+		} else getLogger().warning("Tried to remove treasure that doesnt exist, id " + id + " location null");
 	}
 	
 	public boolean isTreasure(Location loc) {
@@ -88,7 +88,8 @@ public class Main extends JavaPlugin {
 		if(loc.getBlock().getType().equals(Material.PLAYER_HEAD)) {
 			Skull skull = (Skull) loc.getBlock().getState();
 			SkullMeta headmeta = (SkullMeta) item.getItemMeta();
-			headmeta.setOwner(skull.getOwner());
+			headmeta.setOwningPlayer(skull.getOwningPlayer());
+			headmeta.setOwnerProfile(skull.getOwnerProfile());
 			item.setItemMeta(headmeta);
 		}
 		p.getInventory().setItem(1, item);

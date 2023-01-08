@@ -116,12 +116,6 @@ public class EventHandlers implements Listener {
 	}
 	
 	@EventHandler
-	public void onPlayerJoin(PlayerJoinEvent event) {
-		Player p = event.getPlayer();
-		
-	}
-	
-	@EventHandler
 	public void onPlayerLeave(PlayerQuitEvent event) {
 		Player p = event.getPlayer();
 		if(plugin.carrying.containsKey(p.getUniqueId().toString())) {
