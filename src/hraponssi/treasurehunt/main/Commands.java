@@ -101,9 +101,28 @@ public class Commands implements CommandExecutor {
                 p.sendMessage(ChatColor.GREEN + "Dropped treasure " + cid);
 
                 break;
+            case "tp":
+                if (!p.hasPermission("thunt.admin")) {
+                    p.sendMessage(ChatColor.RED + "You dont have permission");
+                    return true;
+                }
+                if (args.length < 1) {
+                    p.sendMessage(ChatColor.RED + "Use 'tp <id number>'");
+                    return true;
+                }
+
+                int tid = utils.toInt(args[1]);
+                if (plugin.getTreasureLoc(tid) == null) {
+                    p.sendMessage(ChatColor.RED + "That treasure id doesnt exist.");
+                    return true;
+                }
+                p.teleport(plugin.getTreasureLoc(tid));
+                p.sendMessage(ChatColor.GREEN + "Teleported you to treasure location " + tid);
+
+                break;
             default:
                 if (p.hasPermission("thunt.admin")) {
-                    p.sendMessage(ChatColor.RED + "Invalid arguments. Available: set, remove, resetfinds, drop");
+                    p.sendMessage(ChatColor.RED + "Invalid arguments. Available: set, remove, resetfinds, drop, tp");
                 } else {
                     p.sendMessage(ChatColor.RED + "Invalid arguments.");
                 }
