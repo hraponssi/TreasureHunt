@@ -48,8 +48,8 @@ public class EventHandlers implements Listener {
 		Block b = event.getClickedBlock();
 		Location loc = b.getLocation();
 		if(clicked.contains(p)) return;
-		if(plugin.seting.containsKey(uuid)) {
-			int id = plugin.seting.get(uuid);
+		if(plugin.setting.containsKey(uuid)) {
+			int id = plugin.setting.get(uuid);
 			clicked.add(p);
 			plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
 				public void run() {
@@ -57,7 +57,7 @@ public class EventHandlers implements Listener {
 				}
 			}, 10L);
 			plugin.addTreasure(id, loc);
-			plugin.seting.remove(uuid);
+			plugin.setting.remove(uuid);
 			p.sendMessage(ChatColor.GREEN + "You set treasure location " + id + " to that " + b.getType().name() + " block at " + b.getLocation().toString());
 		}else if(plugin.isTreasure(loc)) {
 			int id = plugin.locations.get(loc);

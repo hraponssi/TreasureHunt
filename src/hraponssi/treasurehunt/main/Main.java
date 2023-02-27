@@ -29,7 +29,7 @@ public class Main extends JavaPlugin {
 	
 	HashMap<String, Integer> carrying = new HashMap<>(); //UUID STRING, treasure id
 	
-	HashMap<String, Integer> seting = new HashMap<>(); //UUID STRING, treasure id
+	HashMap<String, Integer> setting = new HashMap<>(); //UUID STRING, treasure id
 	
 	public void onDisable() {
 		dataInterface.saveData();
