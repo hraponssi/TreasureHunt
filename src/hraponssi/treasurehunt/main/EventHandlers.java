@@ -93,6 +93,7 @@ public class EventHandlers implements Listener {
 			        fw.setFireworkMeta(fwm);
 			        fw.detonate();
 				}
+				event.setCancelled(true); //Cancel so you don't place the treasure
 			}else {
 				if(plugin.carrying.containsKey(uuid)) {
 					p.sendMessage(ChatColor.RED + "You are already carrying treasure! Drop it with /thunt drop");
