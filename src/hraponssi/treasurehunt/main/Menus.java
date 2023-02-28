@@ -14,43 +14,43 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Menus {
 
-	Main plugin;
-	Utils utils;
-	
-	public Menus(Main plugin) {
-		this.plugin = plugin;
-		this.utils = new Utils();
-	}
-	
-	public void openMenu(Player player) {
-		Inventory inv = Bukkit.createInventory(null, 9, ChatColor.DARK_GREEN + "Treasure Hunt");
-		int slot = 1;
-		String uuid = player.getUniqueId().toString();
-		int id = 1;
-		while(id <= plugin.locations.size()-1) {
-			Location loc = plugin.getTreasureLoc(id);
-			Material type = loc.getBlock().getType();
-			ItemStack item = new ItemStack(type);
-			List<String> lore = new ArrayList<String>();
-			if(!plugin.finds.containsKey(uuid)) plugin.finds.put(uuid, new ArrayList<Integer>());
-			if(plugin.finds.get(uuid).contains(id)) {
-				item.setType(Material.GREEN_WOOL);
-				lore.add(ChatColor.GREEN + "Found: Yes");
-			}
-			if(!plugin.finds.get(uuid).contains(id)) {
-				item.setType(Material.RED_WOOL);
-				lore.add(ChatColor.RED + "Found: No");
-			}
-			ItemMeta meta = item.getItemMeta();
-			meta.setDisplayName(ChatColor.YELLOW + "Treasure " + id);
-			meta.setLore(lore);
-			item.setItemMeta(meta);
-			if(slot<=7) inv.setItem(slot, item);
-			slot++;
-			id++;
-		}
+    Main plugin;
+    Utils utils;
 
-		player.openInventory(inv);
-	}
-	
+    public Menus(Main plugin) {
+        this.plugin = plugin;
+        this.utils = new Utils();
+    }
+
+    public void openMenu(Player player) {
+        Inventory inv = Bukkit.createInventory(null, 9, ChatColor.DARK_GREEN + "Treasure Hunt");
+        int slot = 1;
+        String uuid = player.getUniqueId().toString();
+        int id = 1;
+        while (id <= plugin.locations.size() - 1) {
+            Location loc = plugin.getTreasureLoc(id);
+            Material type = loc.getBlock().getType();
+            ItemStack item = new ItemStack(type);
+            List<String> lore = new ArrayList<String>();
+            plugin.finds.putIfAbsent(uuid, new ArrayList<Integer>());
+            if (plugin.finds.get(uuid).contains(id)) {
+                item.setType(Material.GREEN_WOOL);
+                lore.add(ChatColor.GREEN + "Found: Yes");
+            }
+            if (!plugin.finds.get(uuid).contains(id)) {
+                item.setType(Material.RED_WOOL);
+                lore.add(ChatColor.RED + "Found: No");
+            }
+            ItemMeta meta = item.getItemMeta();
+            meta.setDisplayName(ChatColor.YELLOW + "Treasure " + id);
+            meta.setLore(lore);
+            item.setItemMeta(meta);
+            if (slot <= 7) inv.setItem(slot, item);
+            slot++;
+            id++;
+        }
+
+        player.openInventory(inv);
+    }
+
 }
